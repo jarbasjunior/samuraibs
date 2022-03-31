@@ -1,0 +1,17 @@
+{
+  "name": "samuraibs-tests",
+  "version": "1.0.0",
+  "description": "Projeto de testes de aceitação E2E em Cypress",
+  "main": "index.js",
+  "author": "Jarbas Junior",
+  "license": "MIT",
+  "devDependencies": {
+    "@faker-js/faker": "^6.1.1",
+    "cypress": "^9.5.3",
+    "dotenv": "^16.0.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-import": "^2.25.4",
+    "pg": "^8.7.3"
+  }
+}
