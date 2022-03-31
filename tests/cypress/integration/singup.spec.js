@@ -9,13 +9,13 @@ describe('Dado que acesso a página de cadastro', () => {
     before(() => cy.task('removeUser', user.email));
 
     it('Deve permitir cadastrar novo usuário com sucesso', () => {
-      cy.get('input[placeholder="Nome"]').type(user.name);
-      cy.get('input[placeholder="E-mail"]').type(user.email);
-      cy.get('input[placeholder="Senha"]').type(user.password);
+      cy.get('input[placeholder^="Nome"]').type(user.name);
+      cy.get('input[placeholder$="email"]').type(user.email);
+      cy.get('input[placeholder*="senha"]').type(user.password);
       cy.contains('button', 'Cadastrar').click();
 
       cy.get('.toast').should('be.visible').find('p')
-        .should('have.text', 'Agora você pode fazer seu login no Samurai Barbershop!');
+        .should('have.text', 'Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!');
       cy.get('.gmtmqV').should('be.visible');
     });
   });
@@ -31,9 +31,9 @@ describe('Dado que acesso a página de cadastro', () => {
     });
 
     it('Deve proibir cadastro de novo usuário', () => {
-      cy.get('input[placeholder="Nome"]').type(user.name);
-      cy.get('input[placeholder="E-mail"]').type(user.email);
-      cy.get('input[placeholder="Senha"]').type(user.password);
+      cy.get('input[placeholder^="Nome"]').type(user.name);
+      cy.get('input[placeholder$="email"]').type(user.email);
+      cy.get('input[placeholder*="senha"]').type(user.password);
       cy.contains('button', 'Cadastrar').click();
 
       cy.get('.toast').should('be.visible').find('p')
