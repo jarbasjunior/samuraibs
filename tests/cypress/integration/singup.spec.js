@@ -1,4 +1,4 @@
-import IndexPage from '../support/pages/index/index_page';
+import SigninPage from '../support/pages/signin/signin_page';
 import SignupPage from '../support/pages/signup/signup_page';
 import Toast from '../support/components/toasts/toasts';
 
@@ -8,11 +8,11 @@ describe('Dado que acesso a página de cadastro', () => {
     before(() => cy.task('removeUser', user.email));
 
     it('Deve permitir cadastrar novo usuário com sucesso', () => {
-      IndexPage.goSignupPage();
+      SigninPage.goSignupPage();
       SignupPage.fillForm(user);
       SignupPage.submitForm();
       Toast.mustHaveText('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!');
-      IndexPage.musthaveLoginForm();
+      SigninPage.musthaveLoginForm();
     });
   });
 
@@ -27,11 +27,11 @@ describe('Dado que acesso a página de cadastro', () => {
     });
 
     it('Deve proibir cadastro de novo usuário', () => {
-      IndexPage.goSignupPage();
+      SigninPage.goSignupPage();
       SignupPage.fillForm(user);
       SignupPage.submitForm();
       Toast.mustHaveText('Email já cadastrado para outro usuário.');
-      IndexPage.mustNotHaveLoginForm();
+      SigninPage.mustNotHaveLoginForm();
     });
   });
 
@@ -41,7 +41,7 @@ describe('Dado que acesso a página de cadastro', () => {
     };
 
     it('Deve exibir mensagem de alerta', () => {
-      IndexPage.goSignupPage();
+      SigninPage.goSignupPage();
       SignupPage.fillForm(user);
       SignupPage.submitForm();
       SignupPage.alertHaveText('Informe um email válido');
@@ -50,7 +50,7 @@ describe('Dado que acesso a página de cadastro', () => {
 
   context('Quando a senha informada for muito curta', () => {
     const shortPasswords = ['a', '1a', '1a2', '1a2#', '1a2#3'];
-    beforeEach(() => IndexPage.goSignupPage());
+    beforeEach(() => SigninPage.goSignupPage());
 
     shortPasswords.forEach((pwd) => {
       const user = { name: 'Novo usuário', email: 'novo.usuario@samuraibs.com.br', password: pwd };
@@ -64,7 +64,7 @@ describe('Dado que acesso a página de cadastro', () => {
 
   context('Quando campos obrigatórios estiverem ausentes', () => {
     before(() => {
-      IndexPage.goSignupPage();
+      SigninPage.goSignupPage();
       SignupPage.submitForm();
     });
 
