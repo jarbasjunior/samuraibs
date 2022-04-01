@@ -3,15 +3,12 @@ import SignupPage from '../support/pages/signup/signup_page';
 import Toast from '../support/components/toasts/toasts';
 
 describe('Dado que acesso a página de cadastro', () => {
-  beforeEach(() => {
-    IndexPage.goSignupPage();
-  });
-
   context('Quando o usuário não tiver e-mail cadastrado', () => {
     const user = { name: 'Jarbas Junior', email: 'jarbas.junior@samuraibs.com.br', password: '123456' };
     before(() => cy.task('removeUser', user.email));
 
     it('Deve permitir cadastrar novo usuário com sucesso', () => {
+      IndexPage.goSignupPage();
       SignupPage.fillForm(user);
       SignupPage.submitForm();
       Toast.mustHaveText('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!');
@@ -30,6 +27,7 @@ describe('Dado que acesso a página de cadastro', () => {
     });
 
     it('Deve proibir cadastro de novo usuário', () => {
+      IndexPage.goSignupPage();
       SignupPage.fillForm(user);
       SignupPage.submitForm();
       Toast.mustHaveText('Email já cadastrado para outro usuário.');
@@ -43,6 +41,7 @@ describe('Dado que acesso a página de cadastro', () => {
     };
 
     it('Deve exibir mensagem de alerta', () => {
+      IndexPage.goSignupPage();
       SignupPage.fillForm(user);
       SignupPage.submitForm();
       SignupPage.alertHaveText('Informe um email válido');
@@ -51,6 +50,7 @@ describe('Dado que acesso a página de cadastro', () => {
 
   context('Quando a senha informada for muito curta', () => {
     const shortPasswords = ['a', '1a', '1a2', '1a2#', '1a2#3'];
+    beforeEach(() => IndexPage.goSignupPage());
 
     shortPasswords.forEach((pwd) => {
       const user = { name: 'Novo usuário', email: 'novo.usuario@samuraibs.com.br', password: pwd };
@@ -60,5 +60,24 @@ describe('Dado que acesso a página de cadastro', () => {
       });
     });
     afterEach(() => SignupPage.alertHaveText('Pelo menos 6 caracteres'));
+  });
+
+  context('Quando campos obrigatórios estiverem ausentes', () => {
+    before(() => {
+      IndexPage.goSignupPage();
+      SignupPage.submitForm();
+    });
+
+    const alertFields = [
+      { field: 'Nome', message: 'Nome é obrigatório' },
+      { field: 'Email', message: 'E-mail é obrigatório' },
+      { field: 'Senha', message: 'Senha é obrigatória' },
+    ];
+
+    alertFields.forEach((alert) => {
+      it(`Deve exibir mensagem |${alert.message}| campo |${alert.field}| em branco`, () => {
+        SignupPage.alertHaveText(alert.message);
+      });
+    });
   });
 });
