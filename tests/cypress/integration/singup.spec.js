@@ -48,4 +48,17 @@ describe('Dado que acesso a página de cadastro', () => {
       SignupPage.alertHaveText('Informe um email válido');
     });
   });
+
+  context('Quando a senha informada for muito curta', () => {
+    const shortPasswords = ['a', '1a', '1a2', '1a2#', '1a2#3'];
+
+    shortPasswords.forEach((pwd) => {
+      const user = { name: 'Novo usuário', email: 'novo.usuario@samuraibs.com.br', password: pwd };
+      it(`Deve exibir mensagem de alerta com a senha |${pwd}|`, () => {
+        SignupPage.fillForm(user);
+        SignupPage.submitForm();
+      });
+    });
+    afterEach(() => SignupPage.alertHaveText('Pelo menos 6 caracteres'));
+  });
 });
