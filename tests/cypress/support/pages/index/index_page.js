@@ -10,7 +10,7 @@ class IndexPage {
     cy.get(el.loginForm).should('be.visible');
   }
 
-  static mustNothaveLoginForm() {
+  static mustNotHaveLoginForm() {
     cy.get(el.loginForm).should('not.exist');
   }
 }

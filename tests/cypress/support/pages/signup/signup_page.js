@@ -10,6 +10,10 @@ class SignupPage {
   static submitForm() {
     cy.contains(el.registerButton).click();
   }
+
+  static alertHaveText(expectText) {
+    cy.contains(el.alertError, expectText).should('be.visible');
+  }
 }
 
 export default SignupPage;

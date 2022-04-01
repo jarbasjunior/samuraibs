@@ -33,7 +33,19 @@ describe('Dado que acesso a página de cadastro', () => {
       SignupPage.fillForm(user);
       SignupPage.submitForm();
       Toast.mustHaveText('Email já cadastrado para outro usuário.');
-      IndexPage.mustNothaveLoginForm();
+      IndexPage.mustNotHaveLoginForm();
+    });
+  });
+
+  context('Quando e-mail informado for inválido', () => {
+    const user = {
+      name: 'Usuário Com Email Inválido', email: 'email.invalido.com.br', password: '123456',
+    };
+
+    it('Deve exibir mensagem de alerta', () => {
+      SignupPage.fillForm(user);
+      SignupPage.submitForm();
+      SignupPage.alertHaveText('Informe um email válido');
     });
   });
 });
