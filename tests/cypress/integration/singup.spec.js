@@ -1,5 +1,6 @@
 import IndexPage from '../support/pages/index/index_page';
 import SignupPage from '../support/pages/signup/signup_page';
+import Toast from '../support/components/toasts/toasts';
 
 describe('Dado que acesso a página de cadastro', () => {
   beforeEach(() => {
@@ -13,7 +14,7 @@ describe('Dado que acesso a página de cadastro', () => {
     it('Deve permitir cadastrar novo usuário com sucesso', () => {
       SignupPage.fillForm(user);
       SignupPage.submitForm();
-      SignupPage.toastMustHaveText('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!');
+      Toast.mustHaveText('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!');
       IndexPage.musthaveLoginForm();
     });
   });
@@ -31,7 +32,7 @@ describe('Dado que acesso a página de cadastro', () => {
     it('Deve proibir cadastro de novo usuário', () => {
       SignupPage.fillForm(user);
       SignupPage.submitForm();
-      SignupPage.toastMustHaveText('Email já cadastrado para outro usuário.');
+      Toast.mustHaveText('Email já cadastrado para outro usuário.');
       IndexPage.mustNothaveLoginForm();
     });
   });

@@ -1,7 +1,7 @@
 {
   "scripts": {
     "test": "cd tests/ && yarn cypress open",
-    "check-lint": "eslint tests/cypress/integration/**",
+    "check-lint": "eslint tests/cypress/integration/** tests/cypress/support/**",
     "fix-lint": "eslint tests/cypress/integration/** --fix",
     "prepare": "husky install"
   },

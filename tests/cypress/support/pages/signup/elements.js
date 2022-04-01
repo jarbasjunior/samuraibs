@@ -3,5 +3,4 @@ exports.el = {
   fieldEmail: 'input[placeholder$="email"]',
   fieldPassword: 'input[placeholder*="senha"]',
   registerButton: ('button', 'Cadastrar'),
-  toast: '.toast',
 };
