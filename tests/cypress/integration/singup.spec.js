@@ -1,5 +1,5 @@
-import IndexPage from '../support/pages/index_page';
-import SignupPage from '../support/pages/signup_page';
+import IndexPage from '../support/pages/index/index_page';
+import SignupPage from '../support/pages/signup/signup_page';
 
 describe('Dado que acesso a página de cadastro', () => {
   beforeEach(() => {
