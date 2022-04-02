@@ -23,8 +23,20 @@ class SigninPage {
     cy.get(el.fieldPwd).type(user.password);
   }
 
+  static fillEmail(email) {
+    cy.get(el.fieldEmail).clear().type(email);
+  }
+
+  static fillPassword(pwd) {
+    cy.get(el.fieldPwd).clear().type(pwd);
+  }
+
   static submitForm() {
     cy.contains(el.signinButton).click();
+  }
+
+  static alertHaveText(expectText) {
+    cy.contains(el.alertError, expectText).should('be.visible');
   }
 }
 

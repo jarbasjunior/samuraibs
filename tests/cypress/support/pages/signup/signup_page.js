@@ -13,8 +13,7 @@ class SignupPage {
   }
 
   static fillPassword(pwd) {
-    cy.get(el.fieldPassword).clear();
-    cy.get(el.fieldPassword).type(pwd);
+    cy.get(el.fieldPassword).clear().type(pwd);
   }
 
   static submitForm() {
