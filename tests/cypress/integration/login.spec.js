@@ -55,4 +55,22 @@ describe('Dado que acesso a página de login', () => {
 
     afterEach(() => SigninPage.alertHaveText('Informe um email válido'));
   });
+
+  context.only('Quando campos obrigatórios estiverem ausentes', () => {
+    before(() => {
+      SigninPage.go();
+      SigninPage.submitForm();
+    });
+
+    const alertFields = [
+      { field: 'Email', message: 'E-mail é obrigatório' },
+      { field: 'Senha', message: 'Senha é obrigatória' },
+    ];
+
+    alertFields.forEach((alert) => {
+      it(`Deve exibir mensagem |${alert.message}| campo |${alert.field}| em branco`, () => {
+        SigninPage.alertHaveText(alert.message);
+      });
+    });
+  });
 });
