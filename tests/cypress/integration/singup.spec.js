@@ -50,15 +50,19 @@ describe('Dado que acesso a página de cadastro', () => {
 
   context('Quando a senha informada for muito curta', () => {
     const shortPasswords = ['a', '1a', '1a2', '1a2#', '1a2#3'];
-    beforeEach(() => SigninPage.goSignupPage());
+    const user = { name: 'Novo usuário', email: 'novo.usuario@samuraibs.com.br' };
+    before(() => {
+      SigninPage.goSignupPage();
+      SignupPage.fillFormWithoutPass(user);
+    });
 
     shortPasswords.forEach((pwd) => {
-      const user = { name: 'Novo usuário', email: 'novo.usuario@samuraibs.com.br', password: pwd };
       it(`Deve exibir mensagem de alerta com a senha |${pwd}|`, () => {
-        SignupPage.fillForm(user);
+        SignupPage.fillPassword(pwd);
         SignupPage.submitForm();
       });
     });
+
     afterEach(() => SignupPage.alertHaveText('Pelo menos 6 caracteres'));
   });
 
