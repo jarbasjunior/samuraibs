@@ -41,4 +41,17 @@ module.exports = (on, config) => {
       });
     },
   });
+
+  on('task', {
+    tokenRecoveryPass(email) {
+      const query = 'select us.token from public.user_tokens us join public.users u '
+        + 'on u.id = us.user_id where u.email = $1 order by us.created_at desc;';
+      return new Promise((resolve) => {
+        pool.query(query, [email], (error, result) => {
+          if (error) throw error;
+          resolve({ token: result.rows[0].token });
+        });
+      });
+    },
+  });
 };

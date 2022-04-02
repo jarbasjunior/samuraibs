@@ -29,3 +29,12 @@ Cypress.Commands.add('postUser', (user) => {
   cy.request('POST', 'http://localhost:3333/users', user)
     .then((result) => expect(result.status).to.eq(200));
 });
+
+Cypress.Commands.add('postRecoveryPass', (email) => {
+  cy.request('POST', 'http://localhost:3333/password/forgot', { email })
+    .then((result) => expect(result.status).to.eq(204));
+
+  cy.task('tokenRecoveryPass', email).then((res) => {
+    Cypress.env('recoveryToken', res.token);
+  });
+});
