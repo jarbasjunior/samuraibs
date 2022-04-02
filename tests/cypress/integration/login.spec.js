@@ -1,6 +1,7 @@
 import SigninPage from '../support/pages/signin/signin_page';
 import DashHeader from '../support/components/headers/dash_header';
 import Toast from '../support/components/toasts/toasts';
+import Alert from '../support/components/alerts/alerts';
 
 describe('Dado que acesso a página de login', () => {
   context('Quando o usuário tem cadastro', () => {
@@ -53,10 +54,10 @@ describe('Dado que acesso a página de login', () => {
       });
     });
 
-    afterEach(() => SigninPage.alertHaveText('Informe um email válido'));
+    afterEach(() => Alert.mustHaveText('Informe um email válido'));
   });
 
-  context.only('Quando campos obrigatórios estiverem ausentes', () => {
+  context('Quando campos obrigatórios estiverem ausentes', () => {
     before(() => {
       SigninPage.go();
       SigninPage.submitForm();
@@ -69,7 +70,7 @@ describe('Dado que acesso a página de login', () => {
 
     alertFields.forEach((alert) => {
       it(`Deve exibir mensagem |${alert.message}| campo |${alert.field}| em branco`, () => {
-        SigninPage.alertHaveText(alert.message);
+        Alert.mustHaveText(alert.message);
       });
     });
   });

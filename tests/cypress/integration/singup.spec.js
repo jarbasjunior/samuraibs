@@ -1,6 +1,7 @@
 import SigninPage from '../support/pages/signin/signin_page';
 import SignupPage from '../support/pages/signup/signup_page';
 import Toast from '../support/components/toasts/toasts';
+import Alert from '../support/components/alerts/alerts';
 
 describe('Dado que acesso a página de cadastro', () => {
   context('Quando o usuário não tiver e-mail cadastrado', () => {
@@ -40,7 +41,7 @@ describe('Dado que acesso a página de cadastro', () => {
       SigninPage.goSignupPage();
       SignupPage.fillForm(user);
       SignupPage.submitForm();
-      SignupPage.alertHaveText('Informe um email válido');
+      Alert.mustHaveText('Informe um email válido');
     });
   });
 
@@ -59,7 +60,7 @@ describe('Dado que acesso a página de cadastro', () => {
       });
     });
 
-    afterEach(() => SignupPage.alertHaveText('Pelo menos 6 caracteres'));
+    afterEach(() => Alert.mustHaveText('Pelo menos 6 caracteres'));
   });
 
   context('Quando campos obrigatórios estiverem ausentes', () => {
@@ -76,7 +77,7 @@ describe('Dado que acesso a página de cadastro', () => {
 
     alertFields.forEach((alert) => {
       it(`Deve exibir mensagem |${alert.message}| campo |${alert.field}| em branco`, () => {
-        SignupPage.alertHaveText(alert.message);
+        Alert.mustHaveText(alert.message);
       });
     });
   });

@@ -34,10 +34,6 @@ class SigninPage {
   static submitForm() {
     cy.contains(el.signinButton).click();
   }
-
-  static alertHaveText(expectText) {
-    cy.contains(el.alertError, expectText).should('be.visible');
-  }
 }
 
 export default SigninPage;
