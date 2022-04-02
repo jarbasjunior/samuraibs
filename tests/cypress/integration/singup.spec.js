@@ -19,7 +19,7 @@ describe('Dado que acesso a página de cadastro', () => {
       SignupPage.fillForm(user);
       SignupPage.submitForm();
       Toast.mustHaveText('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!');
-      LoginPage.musthaveLoginForm();
+      LoginPage.mustHaveLoginForm();
     });
   });
 

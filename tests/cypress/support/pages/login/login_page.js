@@ -10,7 +10,12 @@ class LoginPage {
     cy.contains(el.createAccountLink).click({ force: true });
   }
 
-  static musthaveLoginForm() {
+  static goForgotPassPage() {
+    this.go();
+    cy.get(el.forgotPassLink).click({ force: true });
+  }
+
+  static mustHaveLoginForm() {
     cy.get(el.loginForm).should('be.visible');
   }
 
