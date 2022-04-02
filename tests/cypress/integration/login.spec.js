@@ -1,25 +1,25 @@
-import SigninPage from '../support/pages/signin/signin_page';
+import Loginpage from '../support/pages/login/login_page';
 import DashHeader from '../support/components/headers/dash_header';
 import Toast from '../support/components/toasts/toasts';
 import Alert from '../support/components/alerts/alerts';
 
 describe('Dado que acesso a página de login', () => {
-  let newUser;
+  let user;
   before(() => {
-    cy.fixture('body_new_user').then((user) => {
-      newUser = user;
-      return newUser;
+    cy.fixture('users').then((users) => {
+      user = users.newUser;
+      return user;
     });
   });
 
   context('Quando o usuário tem cadastro', () => {
-    before(() => cy.postUser(newUser));
+    before(() => cy.postUser(user));
 
     it('Deve fazer login com sucesso', () => {
-      SigninPage.go();
-      SigninPage.fillForm(newUser);
-      SigninPage.submitForm();
-      DashHeader.mustHaveName(newUser.name);
+      Loginpage.go();
+      Loginpage.fillForm(user);
+      Loginpage.submitForm();
+      DashHeader.mustHaveName(user.name);
     });
 
     after(() => cy.clearLocalStorage());
@@ -27,15 +27,15 @@ describe('Dado que acesso a página de login', () => {
 
   context('Quando usuário tentar fazer login com a senha errada', () => {
     before(() => {
-      cy.postUser(newUser).then(() => {
-        newUser.password = '654321';
+      cy.postUser(user).then(() => {
+        user.password = '654321';
       });
     });
 
     it('Deve exibir mensagem de erro', () => {
-      SigninPage.go();
-      SigninPage.fillForm(newUser);
-      SigninPage.submitForm();
+      Loginpage.go();
+      Loginpage.fillForm(user);
+      Loginpage.submitForm();
       Toast.mustHaveText('Ocorreu um erro ao fazer login, verifique suas credenciais.');
     });
   });
@@ -43,14 +43,14 @@ describe('Dado que acesso a página de login', () => {
   context('Quando usuário tentar fazer login com e-mail inválido', () => {
     const invalidEmails = ['google.com.br', 'google.com', '@gmail.com.br', '@gmail.com', '@', '1234@', 'kldjhf2347896'];
     before(() => {
-      SigninPage.go();
-      SigninPage.fillPassword('123456');
+      Loginpage.go();
+      Loginpage.fillPassword('123456');
     });
 
     invalidEmails.forEach((email) => {
       it(`Deve exibir mensagem de erro para o email |${email}|`, () => {
-        SigninPage.fillEmail(email);
-        SigninPage.submitForm();
+        Loginpage.fillEmail(email);
+        Loginpage.submitForm();
       });
     });
 
@@ -59,8 +59,8 @@ describe('Dado que acesso a página de login', () => {
 
   context('Quando campos obrigatórios estiverem ausentes', () => {
     before(() => {
-      SigninPage.go();
-      SigninPage.submitForm();
+      Loginpage.go();
+      Loginpage.submitForm();
     });
 
     const alertFields = [

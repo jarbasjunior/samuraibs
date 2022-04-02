@@ -1,6 +1,6 @@
 import { el } from './elements';
 
-class SigninPage {
+class Loginpage {
   static go() {
     cy.visit('/');
   }
@@ -36,4 +36,4 @@ class SigninPage {
   }
 }
 
-export default SigninPage;
+export default Loginpage;

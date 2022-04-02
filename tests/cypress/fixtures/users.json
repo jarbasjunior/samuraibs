@@ -1,0 +1,18 @@
+{
+  "newUser": {
+    "name": "Novo usuário",
+    "email": "novo.usuario@samuraibs.com.br",
+    "password": "123456",
+    "is_provider": true
+  },
+  "jarbasJunior": {
+    "name": "Jarbas Junior",
+    "email": "jarbas.junior@samuraibs.com.br",
+    "password": "123456"
+  },
+  "invalidEmail": {
+    "name": "Usuário Com Email Inválido",
+    "email": "email.invalido.com.br",
+    "password": "123456"
+  }
+}
