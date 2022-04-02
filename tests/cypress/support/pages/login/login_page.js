@@ -1,13 +1,13 @@
 import { el } from './elements';
 
-class Loginpage {
+class LoginPage {
   static go() {
     cy.visit('/');
   }
 
   static goSignupPage() {
     this.go();
-    cy.contains(el.createAccountLink).click();
+    cy.contains(el.createAccountLink).click({ force: true });
   }
 
   static musthaveLoginForm() {
@@ -32,8 +32,8 @@ class Loginpage {
   }
 
   static submitForm() {
-    cy.contains(el.signinButton).click({ force: true });
+    cy.contains(el.signinButton).click();
   }
 }
 
-export default Loginpage;
+export default LoginPage;

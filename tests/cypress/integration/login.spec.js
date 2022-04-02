@@ -1,4 +1,4 @@
-import Loginpage from '../support/pages/login/login_page';
+import LoginPage from '../support/pages/login/login_page';
 import DashHeader from '../support/components/headers/dash_header';
 import Toast from '../support/components/toasts/toasts';
 import Alert from '../support/components/alerts/alerts';
@@ -16,9 +16,9 @@ describe('Dado que acesso a página de login', () => {
     before(() => cy.postUser(user));
 
     it('Deve fazer login com sucesso', () => {
-      Loginpage.go();
-      Loginpage.fillForm(user);
-      Loginpage.submitForm();
+      LoginPage.go();
+      LoginPage.fillForm(user);
+      LoginPage.submitForm();
       DashHeader.mustHaveName(user.name);
     });
 
@@ -33,9 +33,9 @@ describe('Dado que acesso a página de login', () => {
     });
 
     it('Deve exibir mensagem de erro', () => {
-      Loginpage.go();
-      Loginpage.fillForm(user);
-      Loginpage.submitForm();
+      LoginPage.go();
+      LoginPage.fillForm(user);
+      LoginPage.submitForm();
       Toast.mustHaveText('Ocorreu um erro ao fazer login, verifique suas credenciais.');
     });
   });
@@ -43,14 +43,14 @@ describe('Dado que acesso a página de login', () => {
   context('Quando usuário tentar fazer login com e-mail inválido', () => {
     const invalidEmails = ['google.com.br', 'google.com', '@gmail.com.br', '@gmail.com', '@', '1234@', 'kldjhf2347896'];
     before(() => {
-      Loginpage.go();
-      Loginpage.fillPassword('123456');
+      LoginPage.go();
+      LoginPage.fillPassword('123456');
     });
 
     invalidEmails.forEach((email) => {
       it(`Deve exibir mensagem de erro para o email |${email}|`, () => {
-        Loginpage.fillEmail(email);
-        Loginpage.submitForm();
+        LoginPage.fillEmail(email);
+        LoginPage.submitForm();
       });
     });
 
@@ -59,8 +59,8 @@ describe('Dado que acesso a página de login', () => {
 
   context('Quando campos obrigatórios estiverem ausentes', () => {
     before(() => {
-      Loginpage.go();
-      Loginpage.submitForm();
+      LoginPage.go();
+      LoginPage.submitForm();
     });
 
     const alertFields = [

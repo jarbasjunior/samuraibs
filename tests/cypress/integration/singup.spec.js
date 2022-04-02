@@ -1,4 +1,4 @@
-import Loginpage from '../support/pages/login/login_page';
+import LoginPage from '../support/pages/login/login_page';
 import SignupPage from '../support/pages/signup/signup_page';
 import Toast from '../support/components/toasts/toasts';
 import Alert from '../support/components/alerts/alerts';
@@ -15,11 +15,11 @@ describe('Dado que acesso a página de cadastro', () => {
     });
 
     it('Deve permitir cadastrar novo usuário com sucesso', () => {
-      Loginpage.goSignupPage();
+      LoginPage.goSignupPage();
       SignupPage.fillForm(user);
       SignupPage.submitForm();
       Toast.mustHaveText('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!');
-      Loginpage.musthaveLoginForm();
+      LoginPage.musthaveLoginForm();
     });
   });
 
@@ -32,11 +32,11 @@ describe('Dado que acesso a página de cadastro', () => {
     });
 
     it('Deve proibir cadastro de novo usuário', () => {
-      Loginpage.goSignupPage();
+      LoginPage.goSignupPage();
       SignupPage.fillForm(user);
       SignupPage.submitForm();
       Toast.mustHaveText('Email já cadastrado para outro usuário.');
-      Loginpage.mustNotHaveLoginForm();
+      LoginPage.mustNotHaveLoginForm();
     });
   });
 
@@ -49,7 +49,7 @@ describe('Dado que acesso a página de cadastro', () => {
     });
 
     it('Deve exibir mensagem de alerta', () => {
-      Loginpage.goSignupPage();
+      LoginPage.goSignupPage();
       SignupPage.fillForm(user);
       SignupPage.submitForm();
       Alert.mustHaveText('Informe um email válido');
@@ -63,7 +63,7 @@ describe('Dado que acesso a página de cadastro', () => {
         user = users.newUser;
         return user;
       }).then(() => {
-        Loginpage.goSignupPage();
+        LoginPage.goSignupPage();
         SignupPage.fillFormWithoutPass(user);
       });
     });
@@ -80,7 +80,7 @@ describe('Dado que acesso a página de cadastro', () => {
 
   context('Quando campos obrigatórios estiverem ausentes', () => {
     before(() => {
-      Loginpage.goSignupPage();
+      LoginPage.goSignupPage();
       SignupPage.submitForm();
     });
 
