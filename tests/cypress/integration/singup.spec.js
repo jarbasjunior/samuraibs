@@ -4,6 +4,14 @@ import Toast from '../support/components/toasts/toasts';
 import Alert from '../support/components/alerts/alerts';
 
 describe('Dado que acesso a página de cadastro', () => {
+  let newUser;
+  before(() => {
+    cy.fixture('body_new_user').then((user) => {
+      newUser = user;
+      return newUser;
+    });
+  });
+
   context('Quando o usuário não tiver e-mail cadastrado', () => {
     const user = { name: 'Jarbas Junior', email: 'jarbas.junior@samuraibs.com.br', password: '123456' };
     before(() => cy.task('removeUser', user.email));
@@ -18,14 +26,11 @@ describe('Dado que acesso a página de cadastro', () => {
   });
 
   context('Quando usuário já tiver e-mail cadastrado', () => {
-    const user = {
-      name: 'Novo usuário', email: 'novo.usuario@samuraibs.com.br', password: '123456', is_provider: true,
-    };
-    before(() => cy.postUser(user));
+    before(() => cy.postUser(newUser));
 
     it('Deve proibir cadastro de novo usuário', () => {
       SigninPage.goSignupPage();
-      SignupPage.fillForm(user);
+      SignupPage.fillForm(newUser);
       SignupPage.submitForm();
       Toast.mustHaveText('Email já cadastrado para outro usuário.');
       SigninPage.mustNotHaveLoginForm();
@@ -47,10 +52,9 @@ describe('Dado que acesso a página de cadastro', () => {
 
   context('Quando a senha informada for muito curta', () => {
     const shortPasswords = ['a', '1a', '1a2', '1a2#', '1a2#3'];
-    const user = { name: 'Novo usuário', email: 'novo.usuario@samuraibs.com.br' };
     before(() => {
       SigninPage.goSignupPage();
-      SignupPage.fillFormWithoutPass(user);
+      SignupPage.fillFormWithoutPass(newUser);
     });
 
     shortPasswords.forEach((pwd) => {

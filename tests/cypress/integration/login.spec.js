@@ -4,37 +4,37 @@ import Toast from '../support/components/toasts/toasts';
 import Alert from '../support/components/alerts/alerts';
 
 describe('Dado que acesso a página de login', () => {
-  context('Quando o usuário tem cadastro', () => {
-    const user = {
-      name: 'Novo usuário', email: 'novo.usuario@samuraibs.com.br', password: '123456', is_provider: true,
-    };
+  let newUser;
+  before(() => {
+    cy.fixture('body_new_user').then((user) => {
+      newUser = user;
+      return newUser;
+    });
+  });
 
-    before(() => cy.postUser(user));
+  context('Quando o usuário tem cadastro', () => {
+    before(() => cy.postUser(newUser));
 
     it('Deve fazer login com sucesso', () => {
       SigninPage.go();
-      SigninPage.fillForm(user);
+      SigninPage.fillForm(newUser);
       SigninPage.submitForm();
-      DashHeader.mustHaveName(user.name);
+      DashHeader.mustHaveName(newUser.name);
     });
 
     after(() => cy.clearLocalStorage());
   });
 
   context('Quando usuário tentar fazer login com a senha errada', () => {
-    const user = {
-      name: 'Novo usuário', email: 'novo.usuario@samuraibs.com.br', password: '123456', is_provider: true,
-    };
-
     before(() => {
-      cy.postUser(user).then(() => {
-        user.password = '654321';
+      cy.postUser(newUser).then(() => {
+        newUser.password = '654321';
       });
     });
 
     it('Deve exibir mensagem de erro', () => {
       SigninPage.go();
-      SigninPage.fillForm(user);
+      SigninPage.fillForm(newUser);
       SigninPage.submitForm();
       Toast.mustHaveText('Ocorreu um erro ao fazer login, verifique suas credenciais.');
     });

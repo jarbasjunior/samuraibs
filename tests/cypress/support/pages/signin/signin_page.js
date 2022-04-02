@@ -32,7 +32,7 @@ class SigninPage {
   }
 
   static submitForm() {
-    cy.contains(el.signinButton).click();
+    cy.contains(el.signinButton).click({ force: true });
   }
 }
 
