@@ -1,7 +1,7 @@
 exports.el = {
   createAccountLink: ('a', 'Criar conta'),
   loginForm: '.gmtmqV',
-  fieldEmail: 'input[placeholder=E-mail]',
-  fieldPwd: 'input[placeholder=Senha]',
+  fieldEmail: 'input[placeholder$=email]',
+  fieldPwd: 'input[placeholder$="senha secreta"]',
   signinButton: ('button[type=submit]', 'Entrar'),
 };
