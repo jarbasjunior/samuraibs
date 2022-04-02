@@ -28,5 +28,6 @@ appointmentsRouter.post('/', (0, _celebrate.celebrate)({
   }
 }), appointmentsController.craete);
 appointmentsRouter.get('/me', providerAppointmentsController.index);
+appointmentsRouter.get('/days', providerAppointmentsController.days);
 var _default = appointmentsRouter;
 exports.default = _default;

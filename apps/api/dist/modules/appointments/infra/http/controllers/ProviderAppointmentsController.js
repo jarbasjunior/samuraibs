@@ -9,6 +9,8 @@ var _tsyringe = require("tsyringe");
 
 var _ListProviderAppointmentsService = _interopRequireDefault(require("../../../services/ListProviderAppointmentsService"));
 
+var _ListWorkDaysService = _interopRequireDefault(require("../../../services/ListWorkDaysService"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class ProviderAppointmentsController {
@@ -29,6 +31,13 @@ class ProviderAppointmentsController {
       year: Number(year)
     });
     return res.json(appointments);
+  }
+
+  async days(req, res) {
+    const listDays = _tsyringe.container.resolve(_ListWorkDaysService.default);
+
+    const days = await listDays.execute();
+    return res.json(days);
   }
 
 }

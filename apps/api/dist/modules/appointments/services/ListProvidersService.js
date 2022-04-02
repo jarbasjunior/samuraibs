@@ -27,7 +27,7 @@ let ListProvidersService = (_dec = (0, _tsyringe.injectable)(), _dec2 = function
       execept_user_id: user_id,
       is_provider: true
     });
-    console.log(users);
+
     return users;
   }
 
