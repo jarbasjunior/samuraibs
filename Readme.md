@@ -33,6 +33,8 @@
 
   - [Faker](#faker)
   - [Pg](#pg)
+  - [Moment](#moment)
+  - [Moment Business Day](#moment-business-day)
 
 ---
 
@@ -208,4 +210,14 @@
   * ### Instalação do Postgresql ⚙️
 
     - Execute o comando `yarn add pg -D` para instalar as dependências do **Postgresql** na versão mais recente.
+
+* <a id="moment"/> [Moment](https://github.com/moment/moment) - biblioteca utilizada para formatar datas em JavaScript.
+  * ### Instalação do Moment ⚙️
+
+    - Execute o comando `yarn add moment -D` para instalar as dependências do **Moment** na versão mais recente.
+
+* <a id="moment-business-day"/> [Moment Business Day](https://github.com/kalmecak/moment-business-days) - biblioteca utilizada para verificar os dias úteis da semana.
+  * ### Instalação do Moment Business Day ⚙️
+
+    - Execute o comando `yarn add moment-business-days -D` para instalar as dependências do **Moment Business Day** na versão mais recente.
  

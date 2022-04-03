@@ -54,4 +54,15 @@ module.exports = (on, config) => {
       });
     },
   });
+
+  on('task', {
+    removeAllAppointments() {
+      return new Promise((resolve) => {
+        pool.query('delete from public.appointments;', (error, result) => {
+          if (error) throw error;
+          resolve({ success: result });
+        });
+      });
+    },
+  });
 };
