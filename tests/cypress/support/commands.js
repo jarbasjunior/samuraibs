@@ -1,6 +1,9 @@
 import moment from 'moment';
 import businessDays from 'moment-business-days';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import _ from 'underscore';
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -62,15 +65,14 @@ Cypress.Commands.add('postAppointment', (token, providerId) => {
     workingWeekdays: [1, 2, 3, 4, 5],
   });
 
-  const hours = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+  const hour = _.sample(['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00']);
   const date = new Date();
   // eslint-disable-next-line no-underscore-dangle
   const nextWorkinDay = new Date(Date.parse(moment(businessDays(date, 'YYYY-MM-DD').nextBusinessDay()._d).format('YYYY/MM/DD'))).getDate();
-  const chosenHour = hours[Math.floor(Math.random() * hours.length)];
-  const time = moment(date.setDate(nextWorkinDay)).format(`YYYY-MM-DD ${chosenHour}:00`);
+  const time = moment(date.setDate(nextWorkinDay)).format(`YYYY-MM-DD ${hour}:00`);
   const payload = { provider_id: providerId, date: time };
 
-  Cypress.env('appointment', { day: nextWorkinDay, hour: chosenHour });
+  Cypress.env('appointment', { day: nextWorkinDay, hour });
 
   cy.task('removeAllAppointments').then(() => {
     cy.request({

@@ -35,6 +35,7 @@
   - [Pg](#pg)
   - [Moment](#moment)
   - [Moment Business Day](#moment-business-day)
+  - [Underscore](#underscore)
 
 ---
 
@@ -220,4 +221,9 @@
   * ### Instalação do Moment Business Day ⚙️
 
     - Execute o comando `yarn add moment-business-days -D` para instalar as dependências do **Moment Business Day** na versão mais recente.
+
+* <a id="underscore"/> [Underscore](https://underscorejs.org/#sample) - biblioteca que entre suas várias funcionalidades, aqui ela é utilizada para sortear valor(es) aleatório(s) em uma lista.
+  * ### Instalação do Underscore ⚙️
+
+    - Execute o comando `yarn add underscore -D` para instalar as dependências do **Underscore** na versão mais recente.
  
