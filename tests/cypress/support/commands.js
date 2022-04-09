@@ -3,6 +3,7 @@ import businessDays from 'moment-business-days';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import _ from 'underscore';
+import { apiBaseUrl } from '../../cypress.json';
 
 // ***********************************************
 // This example commands.js shows you how to
@@ -32,7 +33,7 @@ import _ from 'underscore';
 
 Cypress.Commands.add('postAuth', (user) => {
   const payload = { email: user.email, password: user.password };
-  cy.request('POST', 'http://localhost:3333/sessions', payload)
+  cy.request({ method: 'POST', url: `${apiBaseUrl}/sessions`, body: payload })
     .then((result) => {
       expect(result.status).to.eq(200);
       Cypress.env('authUser', result.body.token);
@@ -41,14 +42,14 @@ Cypress.Commands.add('postAuth', (user) => {
 
 Cypress.Commands.add('postUser', (user) => {
   cy.task('removeUser', user.email);
-  cy.request('POST', 'http://localhost:3333/users', user)
+  cy.request({ method: 'POST', url: `${apiBaseUrl}/users`, body: user })
     .then((result) => expect(result.status).to.eq(200));
 });
 
 Cypress.Commands.add('getProviderByEmail', (token, email) => {
   cy.request({
     method: 'GET',
-    url: 'http://localhost:3333/providers',
+    url: `${apiBaseUrl}/providers`,
     headers: { authorization: `Bearer ${token}` },
   }).then((result) => {
     expect(result.status).to.eq(200);
@@ -77,7 +78,7 @@ Cypress.Commands.add('postAppointment', (token, providerId) => {
   cy.task('removeAllAppointments').then(() => {
     cy.request({
       method: 'POST',
-      url: 'http://localhost:3333/appointments',
+      url: `${apiBaseUrl}/appointments`,
       headers: { authorization: `Bearer ${token}` },
       body: payload,
     }).then((result) => expect(result.status).to.eq(200));
@@ -85,7 +86,7 @@ Cypress.Commands.add('postAppointment', (token, providerId) => {
 });
 
 Cypress.Commands.add('postRecoveryPass', (email) => {
-  cy.request('POST', 'http://localhost:3333/password/forgot', { email })
+  cy.request({ method: 'POST', url: `${apiBaseUrl}/password/forgot`, body: { email } })
     .then((result) => expect(result.status).to.eq(204));
 
   cy.task('tokenRecoveryPass', email).then((res) => {

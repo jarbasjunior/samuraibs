@@ -1,5 +1,6 @@
 {
   "baseUrl": "http://localhost:3000",
+  "apiBaseUrl": "http://localhost:3333",
   "viewportWidth": 1440,
   "viewportHeight": 900
 }
