@@ -64,6 +64,7 @@ Cypress.Commands.add('postAppointment', (token, providerId) => {
 
   const hours = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
   const date = new Date();
+  // eslint-disable-next-line no-underscore-dangle
   const nextWorkinDay = new Date(Date.parse(moment(businessDays(date, 'YYYY-MM-DD').nextBusinessDay()._d).format('YYYY/MM/DD'))).getDate();
   const chosenHour = hours[Math.floor(Math.random() * hours.length)];
   const time = moment(date.setDate(nextWorkinDay)).format(`YYYY-MM-DD ${chosenHour}:00`);
