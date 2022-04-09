@@ -2,24 +2,17 @@ import LoginPage from '../support/pages/login/login_page';
 import DashHeader from '../support/components/headers/dash_header';
 import Toast from '../support/components/toasts/toasts';
 import Alert from '../support/components/alerts/alerts';
+import { newUser } from '../support/factories/users';
 
 describe('Dado que acesso a página de login', () => {
-  let user;
-  before(() => {
-    cy.fixture('users').then((users) => {
-      user = users.newUser;
-      return user;
-    });
-  });
-
   context('Quando o usuário tem cadastro', () => {
-    before(() => cy.postUser(user));
+    before(() => cy.postUser(newUser));
 
     it('Deve fazer login com sucesso', () => {
       LoginPage.go();
-      LoginPage.fillForm(user);
+      LoginPage.fillForm(newUser);
       LoginPage.submitForm();
-      DashHeader.mustHaveName(user.name);
+      DashHeader.mustHaveName(newUser.name);
     });
 
     after(() => cy.clearLocalStorage());
@@ -27,14 +20,14 @@ describe('Dado que acesso a página de login', () => {
 
   context('Quando usuário tentar fazer login com a senha errada', () => {
     before(() => {
-      cy.postUser(user).then(() => {
-        user.password = '654321';
+      cy.postUser(newUser).then(() => {
+        newUser.password = '654321';
       });
     });
 
     it('Deve exibir mensagem de erro', () => {
       LoginPage.go();
-      LoginPage.fillForm(user);
+      LoginPage.fillForm(newUser);
       LoginPage.submitForm();
       Toast.mustHaveText('Ocorreu um erro ao fazer login, verifique suas credenciais.');
     });
