@@ -2,21 +2,15 @@ import LoginPage from '../support/pages/login/login_page';
 import SignupPage from '../support/pages/signup/signup_page';
 import Toast from '../support/components/toasts/toasts';
 import Alert from '../support/components/alerts/alerts';
+import { newUser, jarbasJunior, invalidEmail } from '../support/factories/users';
 
 describe('Dado que acesso a página de cadastro', () => {
-  let user;
-
   context('Quando o usuário não tiver e-mail cadastrado', () => {
-    before(() => {
-      cy.fixture('users').then((users) => {
-        user = users.jarbasJunior;
-        return user;
-      }).then(() => cy.task('removeUser', user.email));
-    });
+    before(() => cy.task('removeUser', jarbasJunior.email));
 
     it('Deve permitir cadastrar novo usuário com sucesso', () => {
       LoginPage.goSignupPage();
-      SignupPage.fillForm(user);
+      SignupPage.fillForm(jarbasJunior);
       SignupPage.submitForm();
       Toast.mustHaveText('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!');
       LoginPage.mustHaveLoginForm();
@@ -24,16 +18,11 @@ describe('Dado que acesso a página de cadastro', () => {
   });
 
   context('Quando usuário já tiver e-mail cadastrado', () => {
-    before(() => {
-      cy.fixture('users').then((users) => {
-        user = users.newUser;
-        return user;
-      }).then(() => cy.postUser(user));
-    });
+    before(() => cy.postUser(newUser));
 
     it('Deve proibir cadastro de novo usuário', () => {
       LoginPage.goSignupPage();
-      SignupPage.fillForm(user);
+      SignupPage.fillForm(newUser);
       SignupPage.submitForm();
       Toast.mustHaveText('Email já cadastrado para outro usuário.');
       LoginPage.mustNotHaveLoginForm();
@@ -41,16 +30,9 @@ describe('Dado que acesso a página de cadastro', () => {
   });
 
   context('Quando e-mail informado for inválido', () => {
-    before(() => {
-      cy.fixture('users').then((users) => {
-        user = users.invalidEmail;
-        return user;
-      });
-    });
-
     it('Deve exibir mensagem de alerta', () => {
       LoginPage.goSignupPage();
-      SignupPage.fillForm(user);
+      SignupPage.fillForm(invalidEmail);
       SignupPage.submitForm();
       Alert.mustHaveText('Informe um email válido');
     });
@@ -59,13 +41,8 @@ describe('Dado que acesso a página de cadastro', () => {
   context('Quando a senha informada for muito curta', () => {
     const shortPasswords = ['a', '1a', '1a2', '1a2#', '1a2#3'];
     before(() => {
-      cy.fixture('users').then((users) => {
-        user = users.newUser;
-        return user;
-      }).then(() => {
-        LoginPage.goSignupPage();
-        SignupPage.fillFormWithoutPass(user);
-      });
+      LoginPage.goSignupPage();
+      SignupPage.fillFormWithoutPass(newUser);
     });
 
     shortPasswords.forEach((pwd) => {
