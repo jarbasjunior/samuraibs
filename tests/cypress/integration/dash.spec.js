@@ -1,20 +1,11 @@
 import LoginPage from '../support/pages/login/login_page';
 import DashPage from '../support/pages/dash/dash_page';
+import { zeRamalho } from '../support/factories/appointments/customers';
+import { ramonValdes } from '../support/factories/appointments/providers';
 
 describe('dashboard', () => {
-  let provider;
-  let customer;
-
-  before(() => {
-    cy.fixture('providers').then((providers) => {
-      provider = providers.ramonValdes;
-      return provider;
-    });
-    cy.fixture('users').then((users) => {
-      customer = users.zeRamalho;
-      return customer;
-    });
-  });
+  const customer = zeRamalho;
+  const provider = ramonValdes;
 
   context('Quando um agendamento é realizado', () => {
     before(() => {
