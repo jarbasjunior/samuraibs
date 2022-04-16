@@ -68,12 +68,13 @@ Cypress.Commands.add('postAppointment', (token, providerId) => {
 
   const hour = _.sample(['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00']);
   const date = new Date();
-  // eslint-disable-next-line no-underscore-dangle
-  const nextWorkinDay = new Date(Date.parse(moment(businessDays(date, 'YYYY-MM-DD').nextBusinessDay()._d).format('YYYY/MM/DD'))).getDate();
-  const time = moment(date.setDate(nextWorkinDay)).format(`YYYY-MM-DD ${hour}:00`);
-  const payload = { provider_id: providerId, date: time };
 
-  Cypress.env('appointment', { day: nextWorkinDay, hour });
+  // eslint-disable-next-line no-underscore-dangle
+  const nextWorkinDate = new Date(Date.parse(moment(businessDays(date, 'YYYY-MM-DD').nextBusinessDay()._d).format('YYYY/MM/DD')));
+  const time = moment(nextWorkinDate).format(`YYYY-MM-DD ${hour}:00`);
+  const payload = { provider_id: providerId, date: time };
+  const newDate = new Date(Date.parse(time));
+  Cypress.env('appointment', { date: newDate, hour });
 
   cy.task('removeAllAppointments').then(() => {
     cy.request({

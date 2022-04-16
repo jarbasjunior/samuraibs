@@ -22,7 +22,7 @@ describe('dashboard', () => {
       const appointment = Cypress.env('appointment');
       DashPage.go();
       DashPage.calendarShouldBeVisible();
-      DashPage.selectDay(appointment.day);
+      DashPage.selectDay(appointment.date);
       DashPage.mustDisplayCustomerAppointmentTo(customer.name, appointment.hour);
     });
   });

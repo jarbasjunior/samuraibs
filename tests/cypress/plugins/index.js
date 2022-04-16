@@ -65,4 +65,33 @@ module.exports = (on, config) => {
       });
     },
   });
+
+  on('task', {
+    monthInPtBr(month) {
+      const months = {
+        0: 'Janeiro',
+        1: 'Fevereiro',
+        2: 'Março',
+        3: 'Abril',
+        4: 'Maio',
+        5: 'Junho',
+        6: 'Julho',
+        7: 'Agosto',
+        8: 'Setembro',
+        9: 'Outubro',
+        10: 'Novembro',
+        11: 'Dezembro',
+      };
+      const chosenMonth = months[month];
+      return chosenMonth;
+    },
+  });
+
+  on('task', {
+    isLastDayOfMonth() {
+      const today = new Date();
+      const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+      return (today.getDate() === lastDayOfMonth.getDate());
+    },
+  });
 };
