@@ -1,6 +1,10 @@
 import { el } from './elements';
 
 class DashPage {
+  static go() {
+    cy.visit('/dashboard');
+  }
+
   static calendarShouldBeVisible() {
     cy.get(el.calendar).should('be.visible');
   }

@@ -93,3 +93,11 @@ Cypress.Commands.add('postRecoveryPass', (email) => {
     Cypress.env('recoveryToken', res.token);
   });
 });
+
+Cypress.Commands.add('setUserDataLocalStorage', (usr) => {
+  cy.postAuth(usr).then((res) => {
+    const { user, token } = res.body;
+    window.localStorage.setItem('@Samurai:user', JSON.stringify(user));
+    window.localStorage.setItem('@Samurai:token', token);
+  });
+});

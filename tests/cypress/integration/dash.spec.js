@@ -1,4 +1,3 @@
-import LoginPage from '../support/pages/login/login_page';
 import DashPage from '../support/pages/dash/dash_page';
 import { zeRamalho } from '../support/factories/appointments/customers';
 import { ramonValdes } from '../support/factories/appointments/providers';
@@ -16,13 +15,12 @@ describe('dashboard', () => {
           cy.postAppointment(Cypress.env('authUser'), Cypress.env('providerId'));
         });
       });
+      cy.setUserDataLocalStorage(provider);
     });
 
     it('Deve ser exibido no dash do cabeleireiro', () => {
       const appointment = Cypress.env('appointment');
-      LoginPage.go();
-      LoginPage.fillForm(provider);
-      LoginPage.submitForm();
+      DashPage.go();
       DashPage.calendarShouldBeVisible();
       DashPage.selectDay(appointment.day);
       DashPage.mustDisplayCustomerAppointmentTo(customer.name, appointment.hour);
