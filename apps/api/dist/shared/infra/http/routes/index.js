@@ -28,5 +28,10 @@ routes.use('/users', _users.default);
 routes.use('/sessions', _sessions.default);
 routes.use('/password', _passwords.default);
 routes.use('/profile', _profiles.default);
+routes.get('/', (req, res) => {
+  res.json({
+    message: 'Welcome to Samurai BarberShop by QAninja'
+  });
+});
 var _default = routes;
 exports.default = _default;
