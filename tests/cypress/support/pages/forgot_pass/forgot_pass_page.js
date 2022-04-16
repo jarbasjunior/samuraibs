@@ -2,6 +2,7 @@ import { el } from './elements';
 
 class ForgotPassPage {
   static fillEmail(email) {
+    this.checkPoint();
     cy.get(el.fieldEmail).clear().type(email);
   }
 
@@ -11,6 +12,10 @@ class ForgotPassPage {
 
   static buttonMustdisplayLoad() {
     cy.get(el.recoveryButton).should('have.text', 'Carregando...');
+  }
+
+  static checkPoint() {
+    cy.contains(el.namePage).should('be.visible');
   }
 }
 

@@ -3,6 +3,7 @@ import { el } from './elements';
 class LoginPage {
   static go() {
     cy.visit('/');
+    cy.contains(el.namePage).should('be.visible');
   }
 
   static goSignupPage() {

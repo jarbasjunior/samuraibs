@@ -3,6 +3,7 @@ import { el } from './elements';
 class ResetPassPage {
   static go(token) {
     cy.visit(`/reset-password?token=${token}`);
+    cy.contains(el.namePage).should('be.visible');
   }
 
   static fieldPassForm(pwd, pwd2) {
