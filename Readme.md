@@ -135,9 +135,9 @@
 
 * ### Instalação eslint ⚙️
 
-  - Na pasta raiz do projeto **samuraibs**, execute o comando `yarn add eslint -D` para instalar o eslint como uma dependência de desenvolvimento do projeto.
+  - Navegue até a pasta `samuraibs/tests` fo projeto **samuraibs**, execute o comando `yarn add eslint -D` para instalar o eslint como uma dependência de desenvolvimento do projeto.
   
-  - Na pasta raiz do projeto **samuraibs**, execute o comando `node_modules/.bin/eslint --init` abaixo para configurar o eslint, em seguida responda as seguintes perguntas abaixo, conforme respostas exibidas:
+  - Navegue até a pasta `samuraibs/tests` fo projeto  **samuraibs**, execute o comando `node_modules/.bin/eslint --init` abaixo para configurar o eslint, em seguida responda as seguintes perguntas abaixo, conforme respostas exibidas:
 
     | <center>PERGUNTA</center> | RESPOSTA |
     |-----------|:-----------:|
