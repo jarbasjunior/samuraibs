@@ -26,7 +26,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // import rateLimiter from '@shared/infra/http/middlewares/RateLimiter';
 const app = (0, _express.default)();
-app.use((0, _cors.default)({}));
+app.use((0, _cors.default)({
+  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+  origin: '*'
+}));
 app.use(_express.default.json());
 app.use('/files', _express.default.static(_upload.default.uploadsFolder)); // app.use(rateLimiter);
 
@@ -47,7 +50,8 @@ app.use((err, req, res, _) => {
     message: 'Internal server error'
   });
 });
-app.listen(3333, () => {
+const port = process.env.PORT || 3333;
+app.listen(port, () => {
   // eslint-disable-next-line
-  console.log('⚡️ Server started on port 3333!');
+  console.log(`⚡️ Server started on port ${port}!`);
 });
