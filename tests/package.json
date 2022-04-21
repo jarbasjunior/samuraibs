@@ -8,7 +8,7 @@
   "scripts": {
     "ci:test": "npx cypress run --browser chrome",
     "test": "yarn cypress open",
-    "check-lint": "eslint cypress/integration/** tests/cypress/support/**",
+    "check-lint": "eslint cypress/integration/** cypress/support/**",
     "fix-lint": "eslint cypress/integration/** --fix",
     "prepare": "husky install"
   },
@@ -16,13 +16,16 @@
     "@faker-js/faker": "^6.1.1",
     "cypress": "^9.5.3",
     "dotenv": "^16.0.0",
+    "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-import": "^2.26.0",
     "husky": "7.0.4",
-    "moment": "^2.29.2",
-    "moment-business-days": "^1.2.0",
     "pg": "^8.7.3",
     "underscore": "^1.13.2"
+  },
+  "dependencies": {
+    "moment": "^2.29.3",
+    "moment-business-days": "^1.2.0"
   }
 }
