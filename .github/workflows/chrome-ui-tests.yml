@@ -1,0 +1,37 @@
+name: Chrome UI Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  chrome-ui-tests:
+     runs-on: ubuntu-latest
+     container: cypress/browsers:node12.18.3-chrome87-ff82
+     strategy:
+      fail-fast: false
+      matrix:
+        containers: [1]
+     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Ping API Samurai Barber Shop (Heroku)
+        uses: Leocardoso94/is-my-site-up@v1.2
+        with:
+          site: https://samuraibs-api-jarbas.herokuapp.com
+
+      - name: 'UI Tests - Chrome'
+        uses: cypress-io/github-action@v2
+        with:
+          install-command: yarn install
+          wait-on: 'https://samuraibs-web-jarbas.herokuapp.com'
+          wait-on-timeout: 120
+          browser: chrome
+          record: true
+          parallel: true
+          group: 'UI - Chrome'
+          spec: tests/cypress/integration/*
+        env:
+          TZ: America/sao_Paulo
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
