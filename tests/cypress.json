@@ -3,5 +3,6 @@
   "apiBaseUrl": "https://samuraibs-api-jarbas.herokuapp.com",
   "defaultCommandTimeout": 30000,
   "viewportWidth": 1440,
-  "viewportHeight": 900
+  "viewportHeight": 900,
+  "projectId": "a6dbnb"
 }
