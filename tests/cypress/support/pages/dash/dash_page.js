@@ -16,7 +16,7 @@ class DashPage {
   }
 
   static mustDisplayCustomerAppointmentTo(customer, hour) {
-    cy.get(el.customerAppointment, { timeout: 10000 }).children('span').should('have.text', hour)
+    cy.get(el.customerAppointment).children('span').should('have.text', hour)
       .siblings('div')
       .find('strong', customer)
       .should('be.visible');

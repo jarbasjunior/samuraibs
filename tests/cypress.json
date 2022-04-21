@@ -1,6 +1,7 @@
 {
-  "baseUrl": "http://localhost:3000",
-  "apiBaseUrl": "http://localhost:3333",
+  "baseUrl": "https://samuraibs-web-jarbas.herokuapp.com",
+  "apiBaseUrl": "https://samuraibs-api-jarbas.herokuapp.com",
+  "defaultCommandTimeout": 30000,
   "viewportWidth": 1440,
   "viewportHeight": 900
 }
