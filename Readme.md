@@ -91,28 +91,28 @@
     <img src="https://user-images.githubusercontent.com/6724302/161085112-f3efb287-b18b-4c59-b5cf-c8cf97195e81.png" width="600" height="300">
   </p>
   
-    - Renomeie o arquivo `samuraibs/tests/.env.sample` para `.env`;
-    - Na instância do **SamuraiBS-Dev** copie o valor do campo `Server` e cole na variável `POSTGRES_HOST` dos arquivos: `samuraibs/apps/api/.env` e `samuraibs/tests/.env`;
-    - Na instância do **SamuraiBS-Dev** copie o valor do campo `User & Default database` e cole nas variáveis `POSTGRES_USER` e `POSTGRES_NAME` dos arquivos: `samuraibs/apps/api/.env` e `samuraibs/tests/.env`;
-    - Na instância do **SamuraiBS-Dev** copie o valor do campo `Password` e cole na variável `POSTGRES_PASS` dos arquivos: `samuraibs/apps/api/.env` e `samuraibs/tests/.env`;
+    - Renomeie o arquivo `samurai-barber-shop/tests/.env.sample` para `.env`;
+    - Na instância do **SamuraiBS-Dev** copie o valor do campo `Server` e cole na variável `POSTGRES_HOST` dos arquivos: `samurai-barber-shop/apps/api/.env` e `samurai-barber-shop/tests/.env`;
+    - Na instância do **SamuraiBS-Dev** copie o valor do campo `User & Default database` e cole nas variáveis `POSTGRES_USER` e `POSTGRES_NAME` dos arquivos: `samuraibs/apps/api/.env` e `samurai-barber-shop/tests/.env`;
+    - Na instância do **SamuraiBS-Dev** copie o valor do campo `Password` e cole na variável `POSTGRES_PASS` dos arquivos: `samurai-barber-shop/apps/api/.env` e `samurai-barber-shop/tests/.env`;
 
-* <a id="libs-lint"/> **Configuração de lints e commits** - pelo terminal, navegue até a pasta `samuraibs` e execute o comando `yarn install`, para instalar todas as dependências na raiz do projeto, as quais farão a checagem pre-commit via eslint.
+* <a id="libs-lint"/> **Configuração de lints e commits** - pelo terminal, navegue até a pasta `samurai-barber-shop` e execute o comando `yarn install`, para instalar todas as dependências na raiz do projeto, as quais farão a checagem pre-commit via eslint.
 
-* <a id="libs-api"/> **Instalação dos pacotes da API** - pelo terminal, navegue até a pasta `samuraibs/apps/api` e execute o comando `yarn install`, para instalar todas as dependências do projeto da API.
+* <a id="libs-api"/> **Instalação dos pacotes da API** - pelo terminal, navegue até a pasta `samurai-barber-shop/apps/api` e execute o comando `yarn install && yarn start`, para instalar todas as dependências do projeto da API e colocar a API no ar.
 
-* <a id="libs-web"/> **Instalação dos pacotes da Web** - pelo terminal, navegue até a pasta `samuraibs/apps/web` e execute o comando `yarn install`, para instalar todas as dependências do projeto de Web.
+* <a id="libs-web"/> **Instalação dos pacotes da Web** - pelo terminal, navegue até a pasta `samurai-barber-shop/apps/web` e execute o comando `yarn install && yarn start`, para instalar todas as dependências do projeto de Web e colocar a aplicação WEB no ar.
 
-* <a id="libs-tests"/> **Instalação dos pacotes dos testes** - pelo terminal, navegue até a pasta `samuraibs/tests` e execute o comando `yarn install`, para instalar todas as dependências do projeto de testes.
+* <a id="libs-tests"/> **Instalação dos pacotes dos testes** - pelo terminal, navegue até a pasta `samurai-barber-shop/tests` e execute o comando `yarn install`, para instalar todas as dependências do projeto de testes.
 
 ---
 ## <a id="testes"/> Execução dos testes: 🚀 </a>
 
-* Pelo terminal, navegue até a pasta `tests` e execute o comando `yarn test`, para abrir a guia do Cypress e por ela executar os testes.
+* Pelo terminal, navegue até a pasta `samurai-barber-shop/tests` e execute o comando `yarn test`, para abrir a guia do Cypress e por ela executar os testes.
 
 ---
 ## <a id="inicializacao"/> Inicialização do projeto de testes: 🛣️ 🔫 </a>
 
-* <a id="yarn-init"/> Yarn init - dentro da pasta `tests` execute o comando `yarn init` e responda as perguntas de acordo com o quadro abaixo:
+* <a id="yarn-init"/> Yarn init - dentro da pasta `samurai-barber-shop/tests` execute o comando `yarn init` e responda as perguntas de acordo com o quadro abaixo:
 
     | <center>PERGUNTA</center> | RESPOSTA |
     |-----------|:-----------:|
@@ -129,15 +129,15 @@
 
   * ### Instalação do Cypress ⚙️
 
-    - Pelo terminal, navegue até a pasta `samuraibs/tests` e execute o comando `yarn add cypress -D` para instalar as dependências do **Cypress** na versão mais recente.
-    - Em seguida, na pasta `samuraibs/tests` execute o comando `npx cypress open`.
-    - Por fim, na pasta `samuraibs/tests` execute o comando `rm -r cypress/integration/**`, para remover pastas e arquivos criados por padrão pelo Cypress dentro da pasta `cypress/integration`
+    - Pelo terminal, navegue até a pasta `samurai-barber-shop/tests` e execute o comando `yarn add cypress -D` para instalar as dependências do **Cypress** na versão mais recente.
+    - Em seguida, na pasta `samurai-barber-shop/tests` execute o comando `npx cypress open`.
+    - Por fim, na pasta `samurai-barber-shop/tests` execute o comando `rm -r cypress/integration/**`, para remover pastas e arquivos criados por padrão pelo Cypress dentro da pasta `cypress/integration`
 
 * ### Instalação eslint ⚙️
 
-  - Navegue até a pasta `samuraibs/tests` fo projeto **samuraibs**, execute o comando `yarn add eslint -D` para instalar o eslint como uma dependência de desenvolvimento do projeto.
+  - Navegue até a pasta `samurai-barber-shop/tests` do projeto **samurai-barber-shop**, execute o comando `yarn add eslint -D` para instalar o eslint como uma dependência de desenvolvimento do projeto.
   
-  - Navegue até a pasta `samuraibs/tests` fo projeto  **samuraibs**, execute o comando `node_modules/.bin/eslint --init` abaixo para configurar o eslint, em seguida responda as seguintes perguntas abaixo, conforme respostas exibidas:
+  - Navegue até a pasta `samurai-barber-shop/tests` do projeto  **samurai-barber-shop**, execute o comando `node_modules/.bin/eslint --init` abaixo para configurar o eslint, em seguida responda as seguintes perguntas abaixo, conforme respostas exibidas:
 
     | <center>PERGUNTA</center> | RESPOSTA |
     |-----------|:-----------:|
@@ -173,9 +173,9 @@
 
   - Por fim, no arquivo `package.json`, adicione na chave `scripts`, os novo scripts: 
   
-    - `"check-lint": "eslint tests/cypress/integration/**"`. Assim, quando for executado na raiz do projeto o comando `yarn check-lint`, serão verificados todos os arquivos dentro da pasta **cypress/integration** pelo eslint.
+    - `"check-lint": "eslint cypress/integration/**"`. Assim, quando for executado na raiz do projeto o comando `yarn check-lint`, serão verificados todos os arquivos dentro da pasta **cypress/integration** pelo eslint.
 
-    - `"fix-lint": "eslint tests/cypress/integration/** --fix"`. Desta forma, quando for executado na raiz do projeto o comando `yarn fix-lint`, serão corrigidas as infrações que o eslint considera como autocorrigível de acordo com o *guide* Airbnb que foi configurado anteriomente.
+    - `"fix-lint": "eslint cypress/integration/** --fix"`. Desta forma, quando for executado na raiz do projeto o comando `yarn fix-lint`, serão corrigidas as infrações que o eslint considera como autocorrigível de acordo com o *guide* Airbnb que foi configurado anteriomente.
 
 * <a id="eslint-plugin"/> [Eslint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - Plugin do eslint para o VSCode.
 
