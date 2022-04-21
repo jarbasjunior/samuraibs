@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Navigate to tests folder
-        run: cd tests
+        run: cd tests && ls -la
         
       - name: Ping API Samurai Barber Shop (Heroku)
         uses: Leocardoso94/is-my-site-up@v1.2
