@@ -24,7 +24,7 @@ jobs:
           site: https://samuraibs-api-jarbas.herokuapp.com
 
       - name: 'UI Tests - Chrome'
-        uses: cypress-io/github-action@v2/tests
+        uses: cypress-io/github-action@v2
         with:
           install-command: yarn install
           wait-on: 'https://samuraibs-web-jarbas.herokuapp.com'
