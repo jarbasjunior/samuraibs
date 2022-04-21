@@ -13,10 +13,7 @@ jobs:
         containers: [1]
      steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      
-      - name: Navigate to tests folder
-        run: cd tests && ls -la
+        uses: actions/checkout@v2/tests
         
       - name: Ping API Samurai Barber Shop (Heroku)
         uses: Leocardoso94/is-my-site-up@v1.2
@@ -24,7 +21,7 @@ jobs:
           site: https://samuraibs-api-jarbas.herokuapp.com
 
       - name: 'UI Tests - Chrome'
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v2/tests
         with:
           install-command: yarn install
           wait-on: 'https://samuraibs-web-jarbas.herokuapp.com'
